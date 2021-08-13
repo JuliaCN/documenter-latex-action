@@ -1,0 +1,25 @@
+# action.yml
+name: 'DocumenterLatex'
+description: 'Julia with latex-full installed'
+author: 'Johnny Chen <johnnychen94@hotmail.com>'
+inputs:
+  project_dir:
+    description: 'The document project folder'
+    required: false
+    default: 'docs'
+  make_script_name:
+    description: 'The path to documenter make.jl script'
+    required: false
+    default: 'make.jl'
+  format:
+    description: 'The documenter format'
+    required: false
+    default: 'pdf'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.project_dir }}
+    - ${{ inputs.make_script_name }}
+    - ${{ inputs.format }}
